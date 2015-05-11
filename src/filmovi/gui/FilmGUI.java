@@ -49,6 +49,26 @@ public class FilmGUI extends JFrame {
 		int sifra=JOptionPane.showConfirmDialog(contentPane, "Da li želite da izaðete iz programa?", "Izlaz", JOptionPane.YES_NO_CANCEL_OPTION);
 		if(sifra==JOptionPane.YES_OPTION) System.exit(0);
 	}
+	public static boolean isInteger(String s) {
+	    try { 
+	        Integer.parseInt(s); 
+	    } catch(NumberFormatException e) { 
+	        return false; 
+	    } catch(NullPointerException e) {
+	        return false;
+	    }
+	    return true;
+	}
+	public static boolean isDouble(String s) {
+	    try { 
+	        Double.parseDouble(s); 
+	    } catch(NumberFormatException e) { 
+	        return false; 
+	    } catch(NullPointerException e) {
+	        return false;
+	    }
+	    return true;
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -310,7 +330,7 @@ public class FilmGUI extends JFrame {
 					film.setNaziv(textField.getText());
 					object.put("Naziv", textField.getText());
 				}
-				if (textField_1.getText().isEmpty()) {
+				if (textField_1.getText().isEmpty()||!isInteger(textField_1.getText())) {
 					film.setGodina(0);
 					object.put("Godina", "Unknown");
 				} else {
@@ -332,7 +352,7 @@ public class FilmGUI extends JFrame {
 					film.setZanr(textField_3.getText());
 					object.put("Zanr", textField_3.getText());
 				}
-				if (textField_4.getText().isEmpty()) {
+				if (textField_4.getText().isEmpty()||!isDouble(textField_4.getText())) {
 					film.setOcenaGledalaca(0.00);;
 					object.put("Ocena gledalaca", "Unknown");
 				} else {
